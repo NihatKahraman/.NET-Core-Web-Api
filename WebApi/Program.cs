@@ -23,7 +23,8 @@ builder.Services.AddControllers(config =>
 })
 .AddXmlDataContractSerializerFormatters()
 .AddCustomCsvFormatter()
-.AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+.AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
+.AddControllersAsServices();
 //.AddNewtonsoftJson();
 
 builder.Services.AddScoped<ValidationFilterAttribute>(); // IoC 

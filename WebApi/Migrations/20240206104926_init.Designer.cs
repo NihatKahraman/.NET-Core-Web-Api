@@ -12,7 +12,7 @@ using Repositories.EFCore;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20231202131819_init")]
+    [Migration("20240206104926_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -33,10 +33,21 @@ namespace WebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PageNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RecordDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Writer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -48,20 +59,11 @@ namespace WebApi.Migrations
                         new
                         {
                             Id = 1,
-                            Price = 75m,
-                            Title = "Karagöz ve Hacivat"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Price = 175m,
-                            Title = "Mesnevi"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Price = 375m,
-                            Title = "Devlet"
+                            Genre = "Gölge Oyunu",
+                            PageNumber = 216,
+                            RecordDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Karagöz ve Hacivat",
+                            Writer = "Unknown"
                         });
                 });
 
@@ -171,19 +173,19 @@ namespace WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "257a03cc-f89b-4034-8aa3-23640f7c7c4b",
+                            Id = "26945fcd-5a7e-4502-83fa-af2b7fc67f50",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "863dee2f-57c5-4ffe-ad90-3e235aee3dc8",
+                            Id = "768448cc-70eb-40ad-932a-091ef56647c8",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "61a47819-fd41-42a0-9114-7967af89d7fc",
+                            Id = "3131996f-f6fa-4a0c-b9b8-c2935f3ba808",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -52,7 +52,6 @@ namespace WebApi.Extensions
                     builder.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithExposedHeaders("X-Pagination")
                     );
             });
         }

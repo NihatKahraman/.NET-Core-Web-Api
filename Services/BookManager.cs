@@ -55,9 +55,7 @@ namespace Services
             GetAllBooksAsync(LinkParameters linkParameters,
             bool trackChanges)
         {
-            if (!linkParameters.BookParameters.ValidPriceRange)
-                throw new PriceOutofRangeBadRequestException();
-
+            
             var booksWithMetaData = await _manager
                 .Book.GetAllBooksAsync(linkParameters.BookParameters, trackChanges);
 

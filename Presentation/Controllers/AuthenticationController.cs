@@ -21,8 +21,7 @@ namespace Presentation.Controllers
             _service = service;
         }
 
-        [HttpPost]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistrationDto)
         {
             var result = await _service
@@ -42,8 +41,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("login")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+        public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto user)
         {
             if (!await _service.AuthenticationService.ValidateUser(user))
                 return Unauthorized(); //401
@@ -57,13 +55,18 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("refresh")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto)
         {
             var tokenDtoToReturn = await _service
                 .AuthenticationService
                 .RefreshToken(tokenDto);
             return Ok(tokenDtoToReturn);
+        }
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate()
+        {
+            return Ok();
         }
     }
 }

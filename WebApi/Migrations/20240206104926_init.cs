@@ -63,7 +63,10 @@ namespace WebApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Writer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PageNumber = table.Column<int>(type: "int", nullable: false),
+                    RecordDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -181,20 +184,15 @@ namespace WebApi.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "257a03cc-f89b-4034-8aa3-23640f7c7c4b", null, "User", "USER" },
-                    { "61a47819-fd41-42a0-9114-7967af89d7fc", null, "Admin", "ADMIN" },
-                    { "863dee2f-57c5-4ffe-ad90-3e235aee3dc8", null, "Editor", "EDITOR" }
+                    { "26945fcd-5a7e-4502-83fa-af2b7fc67f50", null, "User", "USER" },
+                    { "3131996f-f6fa-4a0c-b9b8-c2935f3ba808", null, "Admin", "ADMIN" },
+                    { "768448cc-70eb-40ad-932a-091ef56647c8", null, "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Price", "Title" },
-                values: new object[,]
-                {
-                    { 1, 75m, "Karagöz ve Hacivat" },
-                    { 2, 175m, "Mesnevi" },
-                    { 3, 375m, "Devlet" }
-                });
+                columns: new[] { "Id", "Genre", "PageNumber", "RecordDate", "Title", "Writer" },
+                values: new object[] { 1, "Gölge Oyunu", 216, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Karagöz ve Hacivat", "Unknown" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

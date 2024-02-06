@@ -24,7 +24,6 @@ namespace Repositories.EFCore
             bool trackChanges)
         {
              var books = await FindAll(trackChanges)
-            .FilteredBooks(bookParameters.MinPrice,bookParameters.MaxPrice)
             .Search(bookParameters.SearchTerm)
             .Sort(bookParameters.OrderBy)
             .ToListAsync();

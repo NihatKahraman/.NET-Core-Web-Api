@@ -14,9 +14,18 @@ namespace Entities.DataTransferObjects
         [MaxLength(50, ErrorMessage = "Title must consist of at maximum 50 characters")]
         public String Title { get; init; }
 
-        [Required(ErrorMessage = "Price is a required field.")]
-        [Range(10,1000)]
-        public decimal Price { get; init; }
+        [Required(ErrorMessage = "Writer is a required field.")]
+        public String Writer { get; init; }
+
+        [Required(ErrorMessage = "Genre is a required field.")]
+        public String Genre { get; init; }
+
+        [Required(ErrorMessage = "PageNumber is a required field.")]
+        public int PageNumber { get; init; }
+
+        [Required(ErrorMessage = "RecordDate is a required field.")]
+        public DateTime RecordDate { get; init; }
+
 
     }
 }

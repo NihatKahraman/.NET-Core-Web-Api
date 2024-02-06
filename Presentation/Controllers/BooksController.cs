@@ -11,8 +11,8 @@ using System.Text.Json;
 namespace Presentation.Controllers
 {
     //[ApiVersion("1.0")]
-    [ServiceFilter(typeof(LogFilterAttribute))]
-    [ApiController] 
+    [Authorize]
+    [ApiController]
     [Route("api/books")]
     [ApiExplorerSettings(GroupName = "v1")]
     //[ResponseCache(CacheProfileName = "5mins")]
@@ -29,7 +29,6 @@ namespace Presentation.Controllers
         [Authorize]
         [HttpHead]
         [HttpGet(Name = "GetAllBooksAsync")]
-        [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         //[ResponseCache(Duration = 60)]
         //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 80)]
         public async Task<IActionResult> GetAllBooksAsync([FromQuery]BookParameters bookParameters )
@@ -66,19 +65,16 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = "Editor, Admin")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync([FromBody] BookDtoForInsertion bookDto)
         {
-
             var book = await _manager.BookService.CreateOneBookAsync(bookDto);
             return StatusCode(201, book); // CreatedAtRoute()
         }
 
         [Authorize(Roles = "Editor, Admin")]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateOneBookAsycn([FromRoute(Name = "id")] int id,
+        public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id,
             [FromBody] BookDtoForUpdate bookDto)
         {
 
