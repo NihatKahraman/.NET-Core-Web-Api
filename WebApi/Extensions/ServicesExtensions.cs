@@ -59,7 +59,10 @@ namespace WebApi.Extensions
         public static void ConfigureDataShaper(this IServiceCollection services)
         {
             services.AddScoped<IDataShaper<BookDto>, DataShaper<BookDto>>();
+            services.AddScoped<IDataShaper<CustomerDto>, DataShaper<CustomerDto>>();
+            services.AddScoped<IDataShaper<ReservationDto>, DataShaper<ReservationDto>>();
         }
+
 
         public static void AddCustomMediaTypes(this IServiceCollection services)
         {
@@ -104,6 +107,8 @@ namespace WebApi.Extensions
                 opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
                 opt.Conventions.Controller<BooksController>()
                     .HasApiVersion(new ApiVersion(1, 0));
+                //opt.Conventions.Controller<CustomersController>()
+                //    .HasApiVersion(new ApiVersion(1, 0));
 
                 opt.Conventions.Controller<BooksV2Controller>()
                     .HasDeprecatedApiVersion(new ApiVersion(2, 0));
@@ -214,6 +219,8 @@ namespace WebApi.Extensions
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
+
+
 
                 s.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {

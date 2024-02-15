@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240206153035_AddedCustomers")]
+    partial class AddedCustomers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,43 +101,6 @@ namespace WebApi.Migrations
                             Gender = "Male",
                             Name = "Nihat Kahraman",
                             PhoneNumber = 5551234567.0
-                        });
-                });
-
-            modelBuilder.Entity("Entities.Models.Reservation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Book")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("BorrowDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("BorrowEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Customer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Reservations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Book = "Karagöz ve Hacivat",
-                            BorrowDate = new DateTime(2024, 2, 7, 16, 40, 54, 438, DateTimeKind.Local).AddTicks(2705),
-                            BorrowEndDate = new DateTime(2024, 2, 7, 16, 40, 54, 438, DateTimeKind.Local).AddTicks(2718),
-                            Customer = "Nihat Kahraman"
                         });
                 });
 
@@ -244,19 +210,19 @@ namespace WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "581ea05e-e8e0-4a1a-b7fa-dcc65d46fa35",
+                            Id = "b2fc8a96-16d5-4f6a-a04f-b6e27bf6c1c4",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "faa70406-6577-4e0a-b5d3-5980301618f9",
+                            Id = "85eb5e0e-e0b0-49ff-aa89-9af21282822c",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "ca307351-3936-47cd-bfdc-b42d5de5cb59",
+                            Id = "e0860240-f5bd-4114-97e6-80bb2fe98ec2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

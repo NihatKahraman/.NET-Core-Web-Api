@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace Entities.DataTransferObjects
 {
-    public class Customer
+    public record CustomerDto
     {
         public int Id { get; init; }
         public String Name { get; init; }
